@@ -51,11 +51,23 @@ class Post extends Component {
                   <img alt="Icon Living" src={user.postimage} />
                 </div>
               </div>
+              <div className="Post-likes">
+                {user.likeCount} {user.likeCount === 1 ? 'like' : 'likes'}
+              </div> 
               <div className="Post-caption">
                 <strong>{user.username}</strong> {user.caption}
               </div>
+              {
+                user.comments.map(
+                  comment => (
+                    <div className="Post-comment">
+                        <strong>{comment.user}</strong> {comment.comment}
+                    </div>
+                  )
+                )
+              }
               <div className="Post-action-box">
-                <div className="Post-like-button"> 
+                <div className="Post-like-button">
                   <button
                     className="LikeButton__root"
                     onClick={this.handleClick}>

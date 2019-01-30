@@ -79,7 +79,19 @@
 }
 
 .CommentBox__input {
-  width: 100%;
+  width: 90%;
   margin: .5em 1em;
   border: none !important;
+}
+
+.Post-likes{
+  line-height: 1;
+  margin-bottom: 8px;
+  margin-left: 16px;
+  margin-top: 12px;
+}
+
+.Post-comment {
+  color: #262626;
+  padding-left: 16px;
 }

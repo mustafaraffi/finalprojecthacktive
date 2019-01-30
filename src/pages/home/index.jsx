@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Header from '../../components/header';
 import Post from '../../components/post';
 
+import {Redirect} from 'react-router-dom';
+
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -14,6 +16,10 @@ class Home extends Component {
   render() {
     return (
       <div>
+        {
+            this.props.isLogin ? 
+            <Redirect  to={'/home'}/> : <Redirect  to='/'/>
+        }
         <Header />
         <div>
           <Post users={this.props.users}/>
@@ -25,6 +31,7 @@ class Home extends Component {
 
 const mapStateToProps = (state) => ({
   users: state.post.users,
+  isLogin: state.post.isLogin,
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({

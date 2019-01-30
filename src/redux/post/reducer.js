@@ -2,12 +2,24 @@
 const postState = {
   users :
   [ {
-    id: '01',
-    username: 'romeulukiki',
-    avatarimage: 'https://cdn.images.dailystar.co.uk/dynamic/58/photos/588000/620x/Romelu-Lukaku-695929.jpg',
-    postdate: "20190128",
-    postimage: 'https://images.beinsports.com/dp9FPNh9hVAe2rBgbZHB0E7pG_c=/full-fit-in/1000x0/romelu-lukaku-and-marouane-fellaini-cropped_zkghnld5kqk15j51ftftormo.jpg',
-    caption: '3 Point!!!',
+      id: '01',
+      username: 'romeulukiki',
+      avatarimage: 'https://cdn.images.dailystar.co.uk/dynamic/58/photos/588000/620x/Romelu-Lukaku-695929.jpg',
+      postdate: "20190128",
+      postimage: 'https://images.beinsports.com/dp9FPNh9hVAe2rBgbZHB0E7pG_c=/full-fit-in/1000x0/romelu-lukaku-and-marouane-fellaini-cropped_zkghnld5kqk15j51ftftormo.jpg',
+      caption: '3 Point!!!',
+      likeCount: 3,
+      isLiked:false,
+      comments : [
+        {
+          user: 'romario',
+          comment: 'This Guy is lit',
+        },
+        {
+          user: 'gazidis',
+          comment: 'Well Played!!',
+        },
+      ]
     },
     {
       id: '02',
@@ -16,6 +28,18 @@ const postState = {
       postdate: "20190127",
       postimage: 'https://pbs.twimg.com/profile_images/970305264468586497/QtUrwvyu_400x400.jpg',
       caption: 'FORZA MILAAN!',
+      likeCount: 4,
+      isLiked:false,
+      comments : [
+        {
+          user: 'inzaghi',
+          comment: 'Future Of Milan',
+        },
+        {
+          user: 'romagnoli',
+          comment: 'Keep it up Boy',
+        },
+      ]
     },
     {
       id: '03',
@@ -24,6 +48,18 @@ const postState = {
       postdate: "20190126",
       postimage: 'https://static.standard.co.uk/s3fs-public/thumbnails/image/2018/11/22/13/paulpogba2211.jpg?w968',
       caption: 'Haters gonna Hate',
+      likeCount: 5,
+      isLiked:false,
+      comments : [
+        {
+          user: 'linggard',
+          comment: 'Dab Nation',
+        },
+        {
+          user: 'rashford',
+          comment: 'Ma Maaannn!',
+        },
+      ]
     },
 
       
