@@ -69,6 +69,7 @@ class SignIn extends Component {
       event.preventDefault();
       if (validateEmail(this.state.email)){
         payload.email=this.state.email;
+        payload.profilename=this.state.email.split("@")[0];
       }else{
         alert("Email not Valid");
         document.getElementById("email").focus();
@@ -89,7 +90,7 @@ class SignIn extends Component {
     var payload = {
       email : "",
       fullname : response.name,
-      profilename : "",
+      profilename : response.name,
       password : ""
     }
     console.log("response " + response.name);

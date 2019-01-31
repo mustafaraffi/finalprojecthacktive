@@ -7,7 +7,7 @@ import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {getDataPost} from '../../redux/post/actions';
+import {getDataPost, likedPost, dislikedPost, addComment} from '../../redux/post/actions';
 
 class Home extends Component {
   componentDidMount(){
@@ -22,7 +22,7 @@ class Home extends Component {
         }
         <Header />
         <div>
-          <Post users={this.props.users}/>
+          <Post users={this.props.users} likedPost={this.props.likedPost} addComment={this.props.addComment} profilename={this.props.profilename}/>
         </div>
       </div>
     );
@@ -32,10 +32,11 @@ class Home extends Component {
 const mapStateToProps = (state) => ({
   users: state.post.users,
   isLogin: state.post.isLogin,
+  profilename: state.post.profilename,
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  getDataPost,
+  getDataPost, likedPost, addComment,
 }, dispatch)
 
 export default connect (mapStateToProps , mapDispatchToProps)(Home);

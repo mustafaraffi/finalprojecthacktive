@@ -87,6 +87,29 @@ const Post = (state ={...postState}, actions) => {
       password: actions.payload.password,
     }
 
+    case 'LIKE_POST':
+    return{
+      ...state,
+      users: state.users.map(
+        (user) => user.id === actions.payload ? 
+          (
+            !user.isLiked ?
+            {...user, isLiked: true, likeCount: user.likeCount + 1,}:
+            {...user, isLiked: false, likeCount: user.likeCount - 1,}
+          )
+      : user 
+      ),
+    }
+    
+    case 'ADD_COMMENT':
+    return{
+      ...state,
+      users: state.users.map(
+        (user) => user.id === actions.payload.id ? 
+          {...user, comments: [...user.comments, actions.payload.comments],}           
+      : user 
+      ),
+    }
     default:
       return state
   }

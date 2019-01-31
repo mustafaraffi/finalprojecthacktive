@@ -12,9 +12,13 @@ class Post extends Component {
     super(props);
 
     this.state = {
-      liked: false,
+      user: this.props.profilename,
+      comment:""
     };
     this.handleClick = this.handleClick.bind(this);
+    this.onCommentChange = this.onCommentChange.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+
   }
 
   handleClick(event) {
@@ -25,6 +29,27 @@ class Post extends Component {
     })
   }
   
+  onCommentChange(event){
+    event.preventDefault();
+    this.setState({ 
+        comment: event.target.value 
+      })
+  }
+
+  handleKeyDown(event) {
+    console.log("Masuk fungsi Comment " + event.target.id);
+    if (event.which === 13 && this.state.comment.trim().length > 0) {
+      var payload = {
+         id: event.target.id,
+        comments : {
+          user : this.state.user,
+          comment : this.state.comment,
+        }
+      }
+      this.props.addComment(payload);
+      this.setState({ comment: "" });
+    }
+  }
   render() {
     return (
         <div>
@@ -70,8 +95,8 @@ class Post extends Component {
                 <div className="Post-like-button">
                   <button
                     className="LikeButton__root"
-                    onClick={this.handleClick}>
-                    {this.state.liked ?
+                    onClick={()=>this.props.likedPost(user.id)}>
+                    {user.isLiked ?
                     (<i className="fas fa-heart LikeButton__icon LikeButton__icon--liked"/>) :
                     (<i className="far fa-heart LikeButton__icon"/>)}
                   </button>
@@ -79,10 +104,13 @@ class Post extends Component {
                 <div className="Post-comment-box">
                   <div className="CommentBox__root">
                     <input
+                      id={user.id}
                       className="CommentBox__input"
                       type="text"
                       placeholder="Add a comment..."
-                      value=""
+                      onChange={this.onCommentChange}
+                      onKeyDown={this.handleKeyDown}
+                      value={this.state.comment}
                     />
                   </div>
                 </div>
