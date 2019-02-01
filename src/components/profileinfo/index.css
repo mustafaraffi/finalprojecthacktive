@@ -1,0 +1,14 @@
+.media-left img {
+  max-width: 130px;
+  max-height: 130px;
+  border-radius: 50%;
+}
+
+.header-ul {
+	padding: 0;
+}
+.header-ul li {
+	display: inline;
+	font-size: 18px;
+	margin-right: 40px;
+}
