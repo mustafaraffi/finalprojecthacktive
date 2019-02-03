@@ -1,34 +1,46 @@
-.ProfileImage__row{
-  width: 90% !important;
-  margin: auto !important;
-}
-.square {
-  position: relative;
-  width: 30%;
-  padding-bottom : 30%; /* = width for a 1:1 aspect ratio */
-  margin:auto;
-  overflow:hidden;
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 1rem;
 }
 
-.content {
-  position:absolute;
-  height:90%; /* = 100% - 2*5% padding */
-  width:90%; /* = 100% - 2*5% padding */
-  
-}
-.table{
-  display:table;
-  width:100%;
-  height:100%;
-}
-.table-cell{
-  display:table-cell;
-  vertical-align:middle;
+.responsive-image {
+  max-width: 90%;
 }
 
-.content .rs{
-  width:auto;
-  height:auto;
-  max-height:90%;
-  max-width:100%;
+.cell img {
+  display: block;
+}
+
+@media screen and (min-width: 600px) {
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .cell {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .cell {
+    width: calc(100% / 3);
+  }
+}
+
+.cell {
+  margin: 1rem;
+}
+
+@media screen and (min-width: 600px) {
+  .cell {
+    width: calc(50% - 2rem);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .cell {
+    width: calc(33.3333% - 2rem);
+  }
 }

@@ -7,11 +7,11 @@ import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {getDataPost, likedPost, dislikedPost, addComment} from '../../redux/post/actions';
+import {getDataPost, likedPost, addComment, getDataPostAPI} from '../../redux/post/actions';
 
 class Home extends Component {
   componentDidMount(){
-    this.props.getDataPost();
+    this.props.getDataPostAPI();
   }
   render() {
     return (
@@ -36,7 +36,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  getDataPost, likedPost, addComment,
+  getDataPost, likedPost, addComment, getDataPostAPI
 }, dispatch)
 
 export default connect (mapStateToProps , mapDispatchToProps)(Home);

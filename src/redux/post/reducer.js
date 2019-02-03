@@ -69,6 +69,11 @@ const postState = {
   profilename: "",
   password: "",
   isLogin: false,
+  isLoading: true,
+  error: {
+    status: false,
+    message:'',
+  },
 }
 
 const Post = (state ={...postState}, actions) => {
@@ -86,7 +91,11 @@ const Post = (state ={...postState}, actions) => {
       profilename: actions.payload.profilename,
       password: actions.payload.password,
     }
-
+    case 'LOGOUT_SUCCESS':
+    return{
+      ...state,
+      isLogin: false,
+    }    
     case 'LIKE_POST':
     return{
       ...state,
@@ -109,6 +118,48 @@ const Post = (state ={...postState}, actions) => {
           {...user, comments: [...user.comments, actions.payload.comments],}           
       : user 
       ),
+    }
+    case 'GET_DATA_POST_REQUEST':
+    return{
+      ...state,
+      isLoading: true,
+    }
+    case 'GET_DATA_POST_SUCCESS':
+    return{
+      ...state,
+      isLoading: false,
+      users: actions.payload.map(
+        (userAPI) =>
+          (
+            { 
+              id: userAPI.id, 
+              username: userAPI.user.username,
+              avatarimage: userAPI.user.profile_image.medium,
+              postdate: userAPI.created_at,
+              postimage: userAPI.urls.regular,
+              caption: (userAPI.description !== null) ? userAPI.description : "No Caption Nedded",
+              likeCount: userAPI.likes,
+              isLiked: userAPI.liked_by_user,
+              comments : [
+                {
+                  user: userAPI.user.name,
+                  comment: userAPI.user.bio,
+                },
+              ],
+
+            }
+          )
+      ),
+
+    }
+    case 'GET_DATA_POST_FAILED':
+    return{
+      ...state,
+      isLoading: false,
+      error:{
+        status: true,
+        message: actions.payload,
+      }
     }
     default:
       return state

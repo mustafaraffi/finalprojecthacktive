@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import './index.css';
 
 class ProfileInfo extends Component {
+  constructor(props) {
+    super(props);
+
+  }
   render() {
     return (
       <div className="row justify-content-center pt-5">
@@ -12,18 +16,19 @@ class ProfileInfo extends Component {
               <a href="#">
                 <img
 									className="media-object"
-									src="https://www.damiadenuga.com.ng/wp-content/uploads/2019/01/Higuain-500x500.jpg"
+									src={this.props.profile_picture}
 									alt="profile-pic"
 								/>
               </a>
             </div>
-            <div className="media-body pl-4">
-              <h2 className="media-heading mt15">golazo</h2>
-              <h4><strong>Gonzalo Higuain</strong> Football Striker</h4>
+            <div className="media-body pl-4 ">
+              <h2 className="media-heading mt15">{this.props.profilename}</h2>
+              <h4><strong>{this.props.fullname}</strong></h4>
+              <div className = "profile__bio">{this.props.bio}</div>
               <ul className="header-ul">
-                <li><strong>50</strong> posts</li>
-                <li><strong>300k</strong> followers</li>
-                <li><strong>180</strong> following</li>
+                <li><strong>{this.props.postCount}</strong> posts</li>
+                <li><strong>{this.props.followers}</strong> followers</li>
+                <li><strong>{this.props.following}</strong> following</li>
               </ul>
             </div>
           </div>

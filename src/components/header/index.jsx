@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './index.css';
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+import {doLogout} from '../../redux/post/actions';
+
 class Header extends Component {
   render() {
     return (
@@ -11,7 +16,7 @@ class Header extends Component {
         <div className="row  Header__container">
           <div className="col-3">
             <h1 className="Header__logo">
-              <Link to="/" className="Header__logo-link">
+              <Link to="/home" className="Header__logo-link">
                 <i className="fab fa-instagram Header__instagram-icon" aria-hidden="true"/> InstaBoom</Link>
             </h1>
           </div>
@@ -36,9 +41,13 @@ class Header extends Component {
               </Link>
             </li>
             <li className="Header__nav-link">
-              {/* <Link to={`/${this.props.currentUser.username}`}> */}
-              <Link to="/mustafa.raffi">
+              <Link to="/profile">
                 <i className="far fa-user fa-2x Header__nav-icon" aria-hidden="true"/>
+              </Link>
+            </li>
+            <li className="Header__nav-link">
+              <Link to="/" onClick={this.props.doLogout}>
+                <i className="fas fa-sign-out-alt fa-2x Header__nav-icon" aria-hidden="true"/>
               </Link>
             </li>
           </ul>
@@ -50,4 +59,12 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  isLogin: state.post.isLogin,
+})
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  doLogout
+}, dispatch)
+
+export default connect (mapStateToProps , mapDispatchToProps)(Header);
